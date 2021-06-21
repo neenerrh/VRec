@@ -60,20 +60,21 @@ def add_course_concept(fr_courseconcept_file,Graph):
         
         course = lines[0]
         concept = lines[1]
-        
-        if not Graph.has_node(course_node):
-            Graph.add_node(concept2_node)
-        
-        
+
         course_node = course
         concept_node = 'K_' + concept
         
-        
         if not Graph.has_node(course_node):
+            Graph.add_node(course_node)
+        
+        
+        
+        
+        
+        if not Graph.has_node(concept_node):
             Graph.add_node(concept_node)
             
-        if not Graph.has_node(course_node):
-            Graph.add_node(concept_node)
+        
             
         Graph.add_edge(course_node, concept_node)
         Graph.add_edge(concept_node, course_node)     
@@ -88,9 +89,9 @@ def add_concept_concept(fr_conceptconcept_file,Graph):
     for line in fr_conceptconcept_file:
         lines = line.split('\t')
         concept1 = lines[0]
-        print(concept1)
+        #print(concept1)
         concept2 = lines[1]
-        print(concept2)
+        #print(concept2)
         
         
         concept1_node = 'K_' + concept1
@@ -312,7 +313,7 @@ if __name__ == '__main__':
     parser.add_argument('--usercourse', type=str, dest='usercourse_file', default='data/mooc/user_course.csv')
     parser.add_argument('--coursevideo', type=str, dest='coursevideo_file', default='data/mooc/course_video.txt')  
     parser.add_argument('--vidconcept', type=str, dest='vidconcept_file', default='data/mooc/video_concept.txt')
-    parser.add_argument('--conceptconcept', type=str, dest='conceptconcept_file', default='data/mooc/concept_concept.csv')
+    parser.add_argument('--conceptconcept', type=str, dest='conceptconcept_file', default='data/mooc/concept_concept.txt')
     parser.add_argument('--courseconcept', type=str, dest='courseconcept_file', default='data/mooc/course_concept.txt')
 
     #parser.add_argument('--auxiliary', type=str, dest='auxiliary_file', default='data/mooc/auxiliary-mapping.txt')
@@ -345,9 +346,9 @@ if __name__ == '__main__':
     fr_negative = open(negative_file, 'r')
     fr_usercourse_file =   open(usercourse_file, 'r', encoding="utf-8") 
     fr_coursevideo_file =   open(coursevideo_file, 'r', encoding="utf-8")
-    fr_vidconcept_file =   open(vidconcept_file, 'r', encoding='utf-16') 
-    fr_conceptconcept_file =   open(conceptconcept_file, 'r', encoding='utf-16-le') 
-    fr_courseconcept_file =   open(courseconcept_file, 'r', encoding='utf-16') 
+    fr_vidconcept_file =   open(vidconcept_file, 'r', encoding='utf-8') 
+    fr_conceptconcept_file =   open(conceptconcept_file, 'r', encoding='utf-8') 
+    fr_courseconcept_file =   open(courseconcept_file, 'r', encoding='utf-8') 
     #fr_auxiliary = open(auxiliary_file,'r')
     fw_positive_path = open(positive_path, 'w')
     fw_negative_path = open(negative_path, 'w')
@@ -361,6 +362,7 @@ if __name__ == '__main__':
     Graph = add_user_movie_interaction_into_graph(positive_rating)
     Graph=add_user_course(fr_usercourse_file,Graph)
     Graph=add_course_video(fr_coursevideo_file,Graph)
+    Graph=add_vid_concept(fr_vidconcept_file,Graph)
     Graph=add_concept_concept(fr_conceptconcept_file,Graph)
     Graph=add_vid_concept(fr_vidconcept_file,Graph)
     
