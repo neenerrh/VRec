@@ -298,8 +298,8 @@ def dump_paths(Graph, rating_pair, maxLen, sample_size, fw_file):
     for pair in rating_pair:
         user_id = pair[0]
         movie_id = pair[1]
-        user_node = 'u' + user_id
-        movie_node = 'i' + movie_id
+        user_node =  user_id
+        movie_node =  movie_id
 
         if Graph.has_node(user_node) and Graph.has_node(movie_node):
             mine_paths_between_nodes(Graph, user_node, movie_node, maxLen, sample_size, fw_file)
@@ -322,7 +322,7 @@ if __name__ == '__main__':
                         help='paths between user-item interaction pairs')
     parser.add_argument('--negativepath', type=str, dest='negative_path', default='data/mooc/negative-path.txt', \
                         help='paths between negative sampled user-item pair')
-    parser.add_argument('--pathlength', type=int, dest='path_length', default=3, help='length of paths with choices [3,5,7]')
+    parser.add_argument('--pathlength', type=int, dest='path_length', default=5, help='length of paths with choices [3,5,7]')
     parser.add_argument('--samplesize', type=int, dest='sample_size', default=5, \
                         help='the sampled size of paths bwteen nodes with choices [5, 10, 20, ...]')
 
@@ -372,10 +372,10 @@ if __name__ == '__main__':
 
     dump_paths(Graph, positive_rating, path_length, sample_size, fw_positive_path)
     dump_paths(Graph, negative_rating, path_length, sample_size, fw_negative_path)
-
+    print("Done")
 
     fr_training.close()
     fr_negative.close()
-    fr_auxiliary.close()
+    #fr_auxiliary.close()
     fw_positive_path.close()
     fw_negative_path.close()
