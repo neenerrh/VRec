@@ -122,7 +122,7 @@ def add_vid_concept(fr_vidconcept_file,Graph):
         video_node = video
         concept_node = 'K_' + concept
         
-        break
+        
         
         if not Graph.has_node(video_node):
             Graph.add_node(video_node)
