@@ -291,10 +291,10 @@ def mine_paths_between_nodes(Graph, user_node, video_node, maxLen, sample_size, 
     if path_size > sample_size:
         random.shuffle(connected_path)
         connected_path = connected_path[:sample_size]
-    if not connected_path:
-        print("No path between nodes")
+    #if not connected_path:
+        #print("No path between nodes")
     for path in connected_path:
-        print(path)
+        #print(path)
         #path1 =[]
         #for element in path:
             #path1.append(element.strip())
@@ -325,7 +325,7 @@ def dump_paths(Graph, rating_pair, maxLen, sample_size, fw_file):
         video_node = 'v'+ video_id
         #print(user_node+','+video_node)
         if Graph.has_node(user_node) and Graph.has_node(video_node):
-            print(user_node+','+video_node)
+            #print(user_node+','+video_node)
             mine_paths_between_nodes(Graph, user_node, video_node, maxLen, sample_size, fw_file)
             
 
@@ -346,7 +346,7 @@ if __name__ == '__main__':
                         help='paths between user-item interaction pairs')
     parser.add_argument('--negativepath', type=str, dest='negative_path', default='data/mooc/negative-path.txt', \
                         help='paths between negative sampled user-item pair')
-    parser.add_argument('--pathlength', type=int, dest='path_length', default=8, help='length of paths with choices [3,5,7]')
+    parser.add_argument('--pathlength', type=int, dest='path_length', default=3, help='length of paths with choices [3,5,7]')
     parser.add_argument('--samplesize', type=int, dest='sample_size', default=5, \
                         help='the sampled size of paths bwteen nodes with choices [5, 10, 20, ...]')
     parser.add_argument('--edges', type=str, dest='edges', default='data/mooc/edges.txt', \
