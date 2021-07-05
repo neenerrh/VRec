@@ -67,8 +67,9 @@ def load_pre_embedding(fr_pre_file, isUser):
 	global pre_embedding, all_variables
 
 	for line in fr_pre_file:
-		lines = line.split('|')
+		lines = line.split(' ')
 		node = lines[0]
+
 		if isUser:
 			node = 'u' + node
 		else:
@@ -76,7 +77,7 @@ def load_pre_embedding(fr_pre_file, isUser):
 
 		if node in all_variables:
 			node_id = all_variables[node]
-			embedding = [float(x) for x in lines[1].split()]
+			embedding = [float(x) for x in lines[1:].split()]
 			embedding = np.array(embedding)
 			pre_embedding[node_id] = embedding
 
@@ -136,10 +137,10 @@ if __name__ == '__main__':
 	
 	parser.add_argument('--positivepath', type=str, dest='positive_path', default='data/mooc/positive-path.txt')
 	parser.add_argument('--negativepath', type=str, dest='negative_path', default='data/mooc/negative-path.txt')
-	parser.add_argument('--pretrainuserembedding', type=str, dest='pre_train_user_embedding', default='data/mooc/pre-train-user-embedding.txt')
-	parser.add_argument('--pretrainmovieembedding', type=str, dest='pre_train_movie_embedding', default='data/mooc/pre-train-item-embedding.txt')
-	parser.add_argument('--train', type=str, dest='train_file', default='data/mooc/training.txt')
-	parser.add_argument('--test', type=str, dest='test_file', default='data/mooc/test.txt')
+	parser.add_argument('--pretrainuserembedding', type=str, dest='pre_train_user_embedding', default='data/mooc/u_vec.txt')
+	parser.add_argument('--pretrainmovieembedding', type=str, dest='pre_train_movie_embedding', default='data/mooc/v_vec.txt')
+	parser.add_argument('--train', type=str, dest='train_file', default='data/mooc/training2.txt')
+	parser.add_argument('--test', type=str, dest='test_file', default='data/mooc/test2.txt')
 	parser.add_argument('--results', type=str, dest='results', default='data/mooc/results.txt')
 
 	parsed_args = parser.parse_args()
