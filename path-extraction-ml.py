@@ -332,8 +332,8 @@ def dump_paths(Graph, rating_pair, maxLen, sample_size, fw_file):
 if __name__ == '__main__':
     
     parser = argparse.ArgumentParser(description=''' Build Knowledge Graph and Mine the Connected Paths''')
-    parser.add_argument('--training', type=str, dest='training_file', default='data/mooc/training2.txt')
-    parser.add_argument('--negtive', type=str, dest='negative_file', default='data/mooc/negative2.txt')
+    parser.add_argument('--training', type=str, dest='training_file', default='data/mooc/training1.txt')
+    parser.add_argument('--negtive', type=str, dest='negative_file', default='data/mooc/negative1.txt')
     #parser.add_argument('--usercourse', type=str, dest='usercourse_file', default='data/mooc/u_c.csv')
     #parser.add_argument('--coursevideo', type=str, dest='coursevideo_file', default='data/mooc/course_video.txt')  
     parser.add_argument('--vidconcept', type=str, dest='vidconcept_file', default='data/mooc/vid_con.txt')
