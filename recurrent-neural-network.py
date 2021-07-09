@@ -56,7 +56,6 @@ def load_paths(fr_file, isPositive):
 			paths_between_pairs[key].append(path)
 
 
-
 def load_pre_embedding(fr_pre_file, isUser):
 	'''
 	load pre-train-user or movie embeddings
@@ -79,9 +78,8 @@ def load_pre_embedding(fr_pre_file, isUser):
 			node_id = all_variables[node]
 			embedding = [float(x) for x in lines[1].split()]
 			embedding = np.array(embedding)
-			print(embedding)
 			pre_embedding[node_id] = embedding
-	 
+
 
 def load_data(fr_file):
 	'''
@@ -136,13 +134,13 @@ if __name__ == '__main__':
 	parser.add_argument('--iteration', type=int, dest='iteration', default=5)
 	parser.add_argument('--learingrate', type=float, dest='learning_rate', default=0.2)
 	
-	parser.add_argument('--positivepath', type=str, dest='positive_path', default='data/mooc/positive-path1.txt')
-	parser.add_argument('--negativepath', type=str, dest='negative_path', default='data/mooc/negative-path1.txt')
-	parser.add_argument('--pretrainuserembedding', type=str, dest='pre_train_user_embedding', default='data/mooc/u_vectors1.txt')
-	parser.add_argument('--pretrainmovieembedding', type=str, dest='pre_train_movie_embedding', default='data/mooc/v_vectors1.txt')
-	parser.add_argument('--train', type=str, dest='train_file', default='data/mooc/training1.txt')
-	parser.add_argument('--test', type=str, dest='test_file', default='data/mooc/test1.txt')
-	parser.add_argument('--results', type=str, dest='results', default='data/mooc/results.txt')
+	parser.add_argument('--positivepath', type=str, dest='positive_path', default='data/ml/positive-path1.txt')
+	parser.add_argument('--negativepath', type=str, dest='negative_path', default='data/ml/negative-path1.txt')
+	parser.add_argument('--pretrainuserembedding', type=str, dest='pre_train_user_embedding', default='data/ml/u_vectors1.txt')
+	parser.add_argument('--pretrainmovieembedding', type=str, dest='pre_train_movie_embedding', default='data/ml/v_vectors1.txt')
+	parser.add_argument('--train', type=str, dest='train_file', default='data/ml/training1.txt')
+	parser.add_argument('--test', type=str, dest='test_file', default='data/ml/test1.txt')
+	parser.add_argument('--results', type=str, dest='results', default='data/ml/results.txt')
 
 	parsed_args = parser.parse_args()
 
@@ -177,17 +175,6 @@ if __name__ == '__main__':
 	positive_label = [] #save the positive user-movie pairs
 	all_user = [] #save all the users
 	all_movie = [] #save all the movies
-	
-	start_time = datetime.now()
-	node_size = len(all_variables)
-	pre_embedding = np.random.rand(node_size, input_dim) #embeddings for all nodes
-	load_pre_embedding(fr_pre_user, True)
-	load_pre_embedding(fr_pre_movie, False)
-	print(pre_embedding)
-	pre_embedding = torch.FloatTensor(pre_embedding)
-	end_time = datetime.now()
-	duration = end_time - start_time
-	print ('the duration for loading embedding is ' + str(duration) + '\n')
 
 	start_time = datetime.now()
 	load_paths(fr_postive, True)
@@ -197,7 +184,15 @@ if __name__ == '__main__':
 	duration = end_time - start_time
 	print ('the duration for loading user path is ' + str(duration) + '\n')
 
-	
+	start_time = datetime.now()
+	node_size = len(all_variables)
+	pre_embedding = np.random.rand(node_size, input_dim) #embeddings for all nodes
+	load_pre_embedding(fr_pre_user, True)
+	load_pre_embedding(fr_pre_movie, False)
+	pre_embedding = torch.FloatTensor(pre_embedding)
+	end_time = datetime.now()
+	duration = end_time - start_time
+	print ('the duration for loading embedding is ' + str(duration) + '\n')
 
 	start_time = datetime.now()
 	model = LSTMTagger(node_size, input_dim, hidden_dim, out_dim, pre_embedding)
