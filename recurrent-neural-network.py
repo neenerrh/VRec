@@ -177,15 +177,7 @@ if __name__ == '__main__':
 	positive_label = [] #save the positive user-movie pairs
 	all_user = [] #save all the users
 	all_movie = [] #save all the movies
-
-	start_time = datetime.now()
-	load_paths(fr_postive, True)
-	load_paths(fr_negative, False)
-	print ('The number of all variables is :' + str(len(all_variables)))
-	end_time = datetime.now()
-	duration = end_time - start_time
-	print ('the duration for loading user path is ' + str(duration) + '\n')
-
+	
 	start_time = datetime.now()
 	node_size = len(all_variables)
 	pre_embedding = np.random.rand(node_size, input_dim) #embeddings for all nodes
@@ -195,6 +187,16 @@ if __name__ == '__main__':
 	end_time = datetime.now()
 	duration = end_time - start_time
 	print ('the duration for loading embedding is ' + str(duration) + '\n')
+
+	start_time = datetime.now()
+	load_paths(fr_postive, True)
+	load_paths(fr_negative, False)
+	print ('The number of all variables is :' + str(len(all_variables)))
+	end_time = datetime.now()
+	duration = end_time - start_time
+	print ('the duration for loading user path is ' + str(duration) + '\n')
+
+	
 
 	start_time = datetime.now()
 	model = LSTMTagger(node_size, input_dim, hidden_dim, out_dim, pre_embedding)
