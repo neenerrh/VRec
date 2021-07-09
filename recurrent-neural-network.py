@@ -183,7 +183,7 @@ if __name__ == '__main__':
 	pre_embedding = np.random.rand(node_size, input_dim) #embeddings for all nodes
 	u_embed=load_pre_embedding(fr_pre_user, True)
 	v_embed=load_pre_embedding(fr_pre_movie, False)
-	print(u_embed)
+	print(pre_embedding)
 	pre_embedding = torch.FloatTensor(pre_embedding)
 	end_time = datetime.now()
 	duration = end_time - start_time
