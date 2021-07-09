@@ -80,6 +80,7 @@ def load_pre_embedding(fr_pre_file, isUser):
 			embedding = [float(x) for x in lines[1:]]
 			embedding = np.array(embedding)
 			pre_embedding[node_id] = embedding
+			print(pre_embedding[node_id])
 
 
 def load_data(fr_file):
