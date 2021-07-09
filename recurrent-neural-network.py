@@ -99,7 +99,7 @@ def load_data(fr_file):
 	for line in fr_file:
 			lines = line.replace('\n', '').split('\t')
 			user = 'u' + lines[0]
-			item = 'i' + lines[1]
+			item = 'v' + lines[1]
 
 			if user not in data_dict:
 				data_dict.update({user:[item]})
@@ -181,8 +181,8 @@ if __name__ == '__main__':
 	start_time = datetime.now()
 	node_size = len(all_variables)
 	pre_embedding = np.random.rand(node_size, input_dim) #embeddings for all nodes
-	u_embed=load_pre_embedding(fr_pre_user, True)
-	v_embed=load_pre_embedding(fr_pre_movie, False)
+	load_pre_embedding(fr_pre_user, True)
+	load_pre_embedding(fr_pre_movie, False)
 	print(pre_embedding)
 	pre_embedding = torch.FloatTensor(pre_embedding)
 	end_time = datetime.now()
