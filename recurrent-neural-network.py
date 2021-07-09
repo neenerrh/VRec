@@ -67,7 +67,7 @@ def load_pre_embedding(fr_pre_file, isUser):
 	global pre_embedding, all_variables
 
 	for line in fr_pre_file:
-		lines = line.split('|')
+		lines = line.split(' |')
 		node = lines[0]
 		if isUser:
 			node = 'u' + node
