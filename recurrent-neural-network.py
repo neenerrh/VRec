@@ -134,12 +134,12 @@ if __name__ == '__main__':
 	parser.add_argument('--iteration', type=int, dest='iteration', default=5)
 	parser.add_argument('--learingrate', type=float, dest='learning_rate', default=0.2)
 	
-	parser.add_argument('--positivepath', type=str, dest='positive_path', default='data/ml/positive-path1.txt')
-	parser.add_argument('--negativepath', type=str, dest='negative_path', default='data/ml/negative-path1.txt')
-	parser.add_argument('--pretrainuserembedding', type=str, dest='pre_train_user_embedding', default='data/ml/u_vectors1.txt')
-	parser.add_argument('--pretrainmovieembedding', type=str, dest='pre_train_movie_embedding', default='data/ml/v_vectors1.txt')
-	parser.add_argument('--train', type=str, dest='train_file', default='data/ml/training1.txt')
-	parser.add_argument('--test', type=str, dest='test_file', default='data/ml/test1.txt')
+	parser.add_argument('--positivepath', type=str, dest='positive_path', default='data/mooc/positive-path1.txt')
+	parser.add_argument('--negativepath', type=str, dest='negative_path', default='data/mooc/negative-path1.txt')
+	parser.add_argument('--pretrainuserembedding', type=str, dest='pre_train_user_embedding', default='data/mooc/u_vectors1.txt')
+	parser.add_argument('--pretrainmovieembedding', type=str, dest='pre_train_movie_embedding', default='data/mooc/v_vectors1.txt')
+	parser.add_argument('--train', type=str, dest='train_file', default='data/mooc/training1.txt')
+	parser.add_argument('--test', type=str, dest='test_file', default='data/mooc/test1.txt')
 	parser.add_argument('--results', type=str, dest='results', default='data/ml/results.txt')
 
 	parsed_args = parser.parse_args()
