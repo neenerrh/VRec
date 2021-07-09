@@ -67,9 +67,8 @@ def load_pre_embedding(fr_pre_file, isUser):
 	global pre_embedding, all_variables
 
 	for line in fr_pre_file:
-		lines = line.split('\t')
+		lines = line.split('|')
 		node = lines[0]
-                line= lines[1:]
 		if isUser:
 			node = 'u' + node
 		else:
@@ -77,11 +76,9 @@ def load_pre_embedding(fr_pre_file, isUser):
 
 		if node in all_variables:
 			node_id = all_variables[node]
-			embedding = [float(x) for x in line]
+			embedding = [float(x) for x in lines[1].split()]
 			embedding = np.array(embedding)
 			pre_embedding[node_id] = embedding
-	print(pre_embedding)		
-
 
 def load_data(fr_file):
 	'''
