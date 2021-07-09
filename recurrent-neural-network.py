@@ -67,9 +67,9 @@ def load_pre_embedding(fr_pre_file, isUser):
 	global pre_embedding, all_variables
 
 	for line in fr_pre_file:
-		lines = line.split(' ')
+		lines = line.split('\t')
 		node = lines[0]
-
+                line= lines[1:]
 		if isUser:
 			node = 'u' + node
 		else:
@@ -77,10 +77,10 @@ def load_pre_embedding(fr_pre_file, isUser):
 
 		if node in all_variables:
 			node_id = all_variables[node]
-			embedding = [float(x) for x in lines[1:]]
+			embedding = [float(x) for x in line]
 			embedding = np.array(embedding)
 			pre_embedding[node_id] = embedding
-			
+	print(pre_embedding)		
 
 
 def load_data(fr_file):
@@ -136,8 +136,8 @@ if __name__ == '__main__':
 	parser.add_argument('--iteration', type=int, dest='iteration', default=5)
 	parser.add_argument('--learingrate', type=float, dest='learning_rate', default=0.2)
 	
-	parser.add_argument('--positivepath', type=str, dest='positive_path', default='data/mooc/positive-path.txt')
-	parser.add_argument('--negativepath', type=str, dest='negative_path', default='data/mooc/negative-path.txt')
+	parser.add_argument('--positivepath', type=str, dest='positive_path', default='data/mooc/positive-path1.txt')
+	parser.add_argument('--negativepath', type=str, dest='negative_path', default='data/mooc/negative-path1.txt')
 	parser.add_argument('--pretrainuserembedding', type=str, dest='pre_train_user_embedding', default='data/mooc/u_vectors1.txt')
 	parser.add_argument('--pretrainmovieembedding', type=str, dest='pre_train_movie_embedding', default='data/mooc/v_vectors1.txt')
 	parser.add_argument('--train', type=str, dest='train_file', default='data/mooc/training1.txt')
