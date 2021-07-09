@@ -140,7 +140,7 @@ if __name__ == '__main__':
 	parser.add_argument('--pretrainmovieembedding', type=str, dest='pre_train_movie_embedding', default='data/mooc/v_vectors1.txt')
 	parser.add_argument('--train', type=str, dest='train_file', default='data/mooc/training1.txt')
 	parser.add_argument('--test', type=str, dest='test_file', default='data/mooc/test1.txt')
-	parser.add_argument('--results', type=str, dest='results', default='data/ml/results.txt')
+	parser.add_argument('--results', type=str, dest='results', default='data/mooc/results.txt')
 
 	parsed_args = parser.parse_args()
 
