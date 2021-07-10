@@ -128,7 +128,7 @@ if __name__ == '__main__':
 	You can change optimizer in the LSTMTrain class
 	'''
 
-	parser.add_argument('--inputdim', type=int, dest='input_dim', default=4)
+	parser.add_argument('--inputdim', type=int, dest='input_dim', default=10)
 	parser.add_argument('--hiddendim', type=int, dest='hidden_dim', default=16)
 	parser.add_argument('--outdim', type=int, dest='out_dim', default=1)
 	parser.add_argument('--iteration', type=int, dest='iteration', default=5)
@@ -186,10 +186,11 @@ if __name__ == '__main__':
 
 	start_time = datetime.now()
 	node_size = len(all_variables)
+	print(node_size)
 	pre_embedding = np.random.rand(node_size, input_dim) #embeddings for all nodes
+	print(pre_embedding.shape)
 	load_pre_embedding(fr_pre_user, True)
 	load_pre_embedding(fr_pre_movie, False)
-	print(pre_embedding)
 	pre_embedding = torch.FloatTensor(pre_embedding)
 	end_time = datetime.now()
 	duration = end_time - start_time
