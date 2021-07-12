@@ -33,7 +33,7 @@ class LSTMTrain(object):
 			node_id = torch.LongTensor([int(self.all_variables[node])])
 			node_id = Variable(node_id)
 			if torch.cuda.is_available():
-				node_id = node_id.cuda()
+				ur_id = ur_id.cuda()
 			node_embedding = self.model.embedding(node_id).squeeze().cpu().data.numpy()
 			if node not in embedding_dict:
 				embedding_dict.update({node:node_embedding})
