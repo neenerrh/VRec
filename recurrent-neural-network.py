@@ -214,7 +214,7 @@ if __name__ == '__main__':
 	top_score_dict = model_evaluation.calculate_ranking_score()
 	#precision_1,_ = model_evaluation.calculate_results(top_score_dict, 1)
 	#precision_5,_ = model_evaluation.calculate_results(top_score_dict, 5)
-	precision_10, mrr_10,,map_10,recall_10 = model_evaluation.calculate_results(top_score_dict, 10)
+	precision_10, mrr_10,map_10,recall_10 = model_evaluation.calculate_results(top_score_dict, 10)
 	end_time = datetime.now()
 	duration = end_time - start_time
 	print ('the duration for model evaluation is ' + str(duration) + '\n')
