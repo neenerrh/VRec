@@ -70,27 +70,24 @@ class LSTMEvaluation(object):
 						hit = hit + 1
 						if isMrr: self.mrr += float(1/(i+1))
 						if isMap: sum_precs+= float(hit /(i+1.0))
-			        if hit > 0:
-					self.map + = sum_precs/ len(self.test_dict[user])	
-			        else:
-				        self.map + = 0.0
+				if hit > 0:
+					self.map + = sum_precs/ len(self.test_dict[user])
+				else:
+					self.map + = 0.0
 				hit_ratio = float(hit / min_len)
 				hit_ratio2 = float(hit/len(self.test_dict[user]))
 				precision += hit_ratio
 				recall+=  hit_ratio2
-
-		precision = precision / user_size 
+		precision = precision / user_size
 		recall = recall/user_size
 		print ('precision@' + str(k) + ' is: ' + str(precision))
 		print ('recall@' + str(k) + ' is: ' + str(recall))
-
 		if isMrr:
 			self.mrr = self.mrr / user_size
 			print ('mrr@' + str(k) +' is: ' + str(self.mrr))
 		if isMap:
 			self.map=self.map/user_size
 			print('map@'+str(k)_' is "+sr(self.map)
-
 		return precision, self.mrr, self.map ,recall
 	
 	        
