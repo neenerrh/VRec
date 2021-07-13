@@ -212,14 +212,14 @@ if __name__ == '__main__':
 	test_dict = load_data(fr_test)
 	model_evaluation = LSTMEvaluation(embedding_dict, all_movie, train_dict, test_dict)
 	top_score_dict = model_evaluation.calculate_ranking_score()
-	precision_1,_ = model_evaluation.calculate_results(top_score_dict, 1)
-	precision_5,_ = model_evaluation.calculate_results(top_score_dict, 5)
-	precision_10, mrr_10 = model_evaluation.calculate_results(top_score_dict, 10)
+	#precision_1,_ = model_evaluation.calculate_results(top_score_dict, 1)
+	#precision_5,_ = model_evaluation.calculate_results(top_score_dict, 5)
+	precision_10, mrr_10,,map_10,recall_10 = model_evaluation.calculate_results(top_score_dict, 10)
 	end_time = datetime.now()
 	duration = end_time - start_time
 	print ('the duration for model evaluation is ' + str(duration) + '\n')
 
-	write_results(fw_results, precision_1, precision_5, precision_10, mrr_10)
+	write_results(fw_results, precision_10, mrr_10, map_10, recall_10)
 
 	end_time = datetime.now()
 	duration = end_time - start_time
