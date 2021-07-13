@@ -12,6 +12,7 @@ class LSTMEvaluation(object):
 		self.train_dict = train_dict
 		self.test_dict = test_dict
 		self.mrr = 0.0
+		self.map=0.0
 
 
 	def calculate_ranking_score(self):
@@ -47,8 +48,12 @@ class LSTMEvaluation(object):
 		calculate the final results: pre@k and mrr
 		'''
 		precision = 0.0
+		recall=0.0
 		isMrr = False
-		if k == 10: isMrr = True
+		isMap = False
+		if k == 10:
+			isMrr = True
+			isMap = True
 		
 		user_size = 0
 		for user in self.test_dict:
@@ -57,19 +62,36 @@ class LSTMEvaluation(object):
 				candidate_item = top_score_dict[user]
 				candidate_size = len(candidate_item)
 				hit = 0
+				sum_prec=0.0
+
 				min_len = min(candidate_size, k)
 				for i in range(min_len):
 					if candidate_item[i] in self.test_dict[user]:
 						hit = hit + 1
 						if isMrr: self.mrr += float(1/(i+1))
+					        if isMap: 
+							sum_precs += hit / (i+1.0)
+			        if hit > 0:
+					self.map + = sum_precs/ len(self.test_dict[user])	
+			        else:
+				        self.map + = 0.0
 				hit_ratio = float(hit / min_len)
+				hit_ratio2 = float(hit/len(self.test_dict[user]))
 				precision += hit_ratio
+				recall+=  hit_ratio2
 
 		precision = precision / user_size 
+		recall = recall/user_size
 		print ('precision@' + str(k) + ' is: ' + str(precision))
+		print ('recall@' + str(k) + ' is: ' + str(recall))
 
 		if isMrr:
 			self.mrr = self.mrr / user_size
 			print ('mrr@' + str(k) +' is: ' + str(self.mrr))
+	        if isMap:
+		       self.map =  self.map/user_size
+		       print ('map@' + str(k) +' is: ' + str(self.map))
 
-		return precision, self.mrr
+		return precision, self.mrr, self.map ,recall
+	
+	        
