@@ -33,7 +33,7 @@ class LSTMTrain(object):
 			node_id = torch.LongTensor([int(self.all_variables[node])])
 			node_id = Variable(node_id)
 			if torch.cuda.is_available():
-				ur_id = ur_id.cuda()
+				node_id = node_id.cuda()
 			node_embedding = self.model.embedding(node_id).squeeze().cpu().data.numpy()
 			if node not in embedding_dict:
 				embedding_dict.update({node:node_embedding})
@@ -71,6 +71,7 @@ class LSTMTrain(object):
 				
 				out = self.model(paths_between_one_pair_id)
 				out = out.squeeze()
+				out=  out.unsqueeze(1)
 			
 				if pair in self.positive_label:
 					label = Variable(torch.Tensor([1]))
