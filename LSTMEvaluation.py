@@ -69,7 +69,7 @@ class LSTMEvaluation(object):
 					if candidate_item[i] in self.test_dict[user]:
 						hit = hit + 1
 						if isMrr: self.mrr += float(1/(i+1))
-					        if isMap: sum_precs += hit / (i+1.0)
+						if isMap: sum_precs+= float(hit /(i+1.0))
 			        if hit > 0:
 					self.map + = sum_precs/ len(self.test_dict[user])	
 			        else:
