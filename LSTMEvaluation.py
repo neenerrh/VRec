@@ -88,9 +88,9 @@ class LSTMEvaluation(object):
 		if isMrr:
 			self.mrr = self.mrr / user_size
 			print ('mrr@' + str(k) +' is: ' + str(self.mrr))
-	        if isMap:
-		       self.map =  self.map/user_size
-		       print ('map@' + str(k) +' is: ' + str(self.map))
+		if isMap:
+			self.map=self.map/user_size
+			print('map@'+str(k)_' is "+sr(self.map)
 
 		return precision, self.mrr, self.map ,recall
 	
