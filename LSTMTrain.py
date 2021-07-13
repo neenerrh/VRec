@@ -71,7 +71,7 @@ class LSTMTrain(object):
 				
 				out = self.model(paths_between_one_pair_id)
 				out = out.squeeze()
-				out=  out.unsqueeze(1)
+				out=  out.unsqueeze(-1)
 			
 				if pair in self.positive_label:
 					label = Variable(torch.Tensor([1]))
