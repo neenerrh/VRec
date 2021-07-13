@@ -62,7 +62,7 @@ class LSTMEvaluation(object):
 				candidate_item = top_score_dict[user]
 				candidate_size = len(candidate_item)
 				hit = 0
-				sum_prec=0.0
+				sum_precs=0.0
 
 				min_len = min(candidate_size, k)
 				for i in range(min_len):
