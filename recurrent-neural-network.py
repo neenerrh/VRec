@@ -107,12 +107,12 @@ def load_data(fr_file):
 	return data_dict
 
 
-def write_results(fw_results, precision_1, precision_5, precision_10, mrr_10):
+def write_results(fw_results, precision_10, mrr_10, map_10, recall_10):
 	'''
 	write results into text file
 	'''
-	line = 'precision@1: ' + str(precision_1) + '\n' + 'precision@5: ' + str(precision_5) + '\n' \
-		+ 'precision@10: ' + str(precision_10) + '\n' + 'mrr: ' + str(mrr_10) + '\n'
+	line = 'precision_10: ' + str(precision_10) + '\n' + 'mrr_10: ' + str(mrr_10) + '\n' \
+		+ 'map_10: ' + str(map_10) + '\n' + 'recall_10: ' + str(recall_10) + '\n'
 	fw_results.write(line)
 
 
@@ -132,7 +132,7 @@ if __name__ == '__main__':
 	parser.add_argument('--hiddendim', type=int, dest='hidden_dim', default=16)
 	parser.add_argument('--outdim', type=int, dest='out_dim', default=1)
 	parser.add_argument('--iteration', type=int, dest='iteration', default=5)
-	parser.add_argument('--learingrate', type=float, dest='learning_rate', default=0.2)
+	parser.add_argument('--learingrate', type=float, dest='learning_rate', default=0.01)
 	
 	parser.add_argument('--positivepath', type=str, dest='positive_path', default='data/mooc/positive-path1.txt')
 	parser.add_argument('--negativepath', type=str, dest='negative_path', default='data/mooc/negative-path1.txt')
