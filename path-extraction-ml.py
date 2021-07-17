@@ -396,7 +396,7 @@ if __name__ == '__main__':
    
     Graph = add_vid_concept(fr_vidconcept_file,Graph)
     print_graph_statistic(Graph)
-    Graph,node1,node2=add_concept_concept(fr_conceptconcept_file,Graph,fw_edges)
+    #Graph,node1,node2=add_concept_concept(fr_conceptconcept_file,Graph,fw_edges)
     
     
     
