@@ -11,8 +11,8 @@ class LSTMEvaluation(object):
 		self.all_movie = all_movie
 		self.train_dict = train_dict
 		self.test_dict = test_dict
-		self.mrr = [ ]
-		self.map=[ ]
+		self.mrr = []
+		self.map=[]
 
 
 	def calculate_ranking_score(self):
@@ -49,6 +49,8 @@ class LSTMEvaluation(object):
 		'''
 		precision = 0.0
 		recall=0.0
+		mrr=0.0
+		ap=0.0
 		isMrr = False
 		isMap = False
 		if k == 10:
@@ -91,5 +93,4 @@ class LSTMEvaluation(object):
 			self.map=sum(self.map)/user_size
 			print('map@'+str(k) +' is: ' + str(self.map))
 		return precision, self.mrr, self.map, recall
-	
 	        
