@@ -100,6 +100,9 @@ def add_concept_concept(fr_conceptconcept_file, Graph ,fw_edges):
         
         concept1_node = 'k' + concept
         concept2_node = 'k' + concept2
+        
+        concept1_node= concept1_node.replace('\n', '')
+        concept2_node= concept2_node.replace('\n', '')
     
         #print(concept_node)
         #print(Graph.has_node(concept_node))
