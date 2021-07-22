@@ -74,9 +74,9 @@ class LSTMEvaluation(object):
 						if isMap: sum_precs += float(hit /(i+1.0))
 							
 				if hit > 0:
-					self.map + = sum_precs/ len(self.test_dict[user])
+					self.map += sum_precs/ len(self.test_dict[user])
 				else:
-					self.map + = 0.0
+					self.map += 0.0
 				hit_ratio = float(hit / min_len)
 				hit_ratio2 = float(hit/len(self.test_dict[user]))
 				precision += hit_ratio
