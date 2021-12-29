@@ -203,6 +203,7 @@ if __name__ == '__main__':
 		all_variables, all_user, all_movie)
 	embedding_dict = model_train.train()
 	print('model training finished')
+	print(embedding_dict)
 	end_time = datetime.now()
 	duration = end_time - start_time
 	print ('the duration for model training is ' + str(duration) + '\n')
